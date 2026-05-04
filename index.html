@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mayank Goud Polagoni — Computer Vision Portfolio</title>
+<meta name="description" content="Mayank Goud Polagoni — graduate researcher in computer vision and reinforcement learning at Northeastern University." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0d12;
+    --bg-soft: #11151c;
+    --surface: #161b24;
+    --surface-2: #1d232e;
+    --line: #232a36;
+    --line-strong: #3a4252;
+    --text: #e8ecf2;
+    --text-dim: #8a93a3;
+    --text-mute: #5b6473;
+    --accent: #c4f04c;       /* electric lime */
+    --accent-2: #6cc6ff;     /* cool cyan */
+    --warn: #ff8a4c;
+    --serif: "Fraunces", "Times New Roman", serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --maxw: 1180px;
+    --radius: 4px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Grid background */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.18;
+    mask-image: radial-gradient(ellipse at top, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at top, #000 30%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(800px 500px at 85% -10%, rgba(108, 198, 255, 0.08), transparent 60%),
+      radial-gradient(700px 400px at 0% 110%, rgba(196, 240, 76, 0.06), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(10, 13, 18, 0.7);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+  nav .logo {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  nav .logo span { color: var(--accent); }
+  nav ul {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  nav ul a {
+    color: var(--text-dim);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    transition: color 0.25s;
+    position: relative;
+  }
+  nav ul a:hover { color: var(--text); }
+  nav ul a::before {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  nav ul a:hover::before { width: 100%; }
+  @media (max-width: 720px) {
+    nav ul { display: none; }
+  }
+
+  /* HERO */
+  header.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 80px;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    width: 100%;
+  }
+  .meta-line {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--text-mute);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .meta-line .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(196, 240, 76, 0.15);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(196, 240, 76, 0.15); }
+    50% { box-shadow: 0 0 0 8px rgba(196, 240, 76, 0.05); }
+  }
+
+  h1.name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 8vw, 104px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  h1.name em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 300;
+  }
+  .tag {
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 620px;
+    line-height: 1.65;
+    margin-bottom: 40px;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+  .tag strong { color: var(--text); font-weight: 500; }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.9s 0.3s ease both;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 22px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.25s;
+    border-radius: var(--radius);
+  }
+  .btn:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .btn.primary {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+  .btn.primary:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+  .btn .arrow { transition: transform 0.25s; }
+  .btn:hover .arrow { transform: translate(2px, -2px); }
+
+  .hero-spec {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
+  .hero-spec > div {
+    padding: 20px 0;
+    border-right: 1px solid var(--line);
+  }
+  .hero-spec > div:last-child { border-right: none; }
+  .hero-spec .label {
+    font-size: 10px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 6px;
+  }
+  .hero-spec .value {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--text);
+  }
+  @media (max-width: 720px) {
+    .hero-spec { grid-template-columns: repeat(2, 1fr); }
+    .hero-spec > div:nth-child(2) { border-right: none; }
+    .hero-spec > div:nth-child(1), .hero-spec > div:nth-child(2) {
+      border-bottom: 1px solid var(--line);
+    }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 120px 0;
+    position: relative;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-head .num {
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .section-head h2 em { font-style: italic; color: var(--text-dim); }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+  }
+  @media (max-width: 880px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-text p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+  }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-text .lead {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 28px;
+    border-radius: var(--radius);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+  }
+  .info-card .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .info-card .row:last-child { border-bottom: none; }
+  .info-card .row .k { color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; }
+  .info-card .row .v { color: var(--text); }
+
+  /* PROJECTS */
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .project {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.3s, padding 0.3s;
+    align-items: start;
+    position: relative;
+  }
+  .project:hover {
+    background: linear-gradient(90deg, transparent, rgba(196, 240, 76, 0.03) 50%, transparent);
+  }
+  .project::before {
+    content: "";
+    position: absolute;
+    left: -32px;
+    top: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.4s;
+  }
+  .project:hover::before { width: 24px; }
+  .project .pnum {
+    color: var(--text-mute);
+    font-size: 13px;
+    padding-top: 4px;
+  }
+  .project .ptitle h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .project .ptitle .ctx {
+    font-size: 12px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+  .project .ptitle .ctx span { color: var(--accent); }
+  .project .pdesc {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .project .tags {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .project .tags span {
+    font-size: 11px;
+    padding: 3px 10px;
+    border: 1px solid var(--line-strong);
+    color: var(--text-dim);
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  @media (max-width: 880px) {
+    .project { grid-template-columns: 1fr; gap: 14px; padding: 28px 0; }
+    .project .pnum { font-size: 11px; }
+  }
+
+  /* PUBLICATIONS */
+  .pubs { display: flex; flex-direction: column; gap: 16px; }
+  .pub {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--accent-2);
+    padding: 24px 28px;
+    border-radius: var(--radius);
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .pub:hover {
+    border-left-color: var(--accent);
+    transform: translateX(4px);
+    background: var(--surface-2);
+  }
+  .pub .ptype {
+    font-size: 11px;
+    color: var(--accent-2);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 10px;
+  }
+  .pub h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .pub .pmeta {
+    font-size: 12px;
+    color: var(--text-mute);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+  @media (max-width: 720px) { .skills-grid { grid-template-columns: 1fr; } }
+  .skill-block {
+    padding: 28px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-block h5 {
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .skill-block ul { list-style: none; }
+  .skill-block li {
+    font-size: 14px;
+    color: var(--text-dim);
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .skill-block li::before {
+    content: "→";
+    color: var(--text-mute);
+    font-family: var(--mono);
+  }
+  .skill-block li:hover { color: var(--text); }
+
+  .courses {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .course {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 18px 20px;
+    border-radius: var(--radius);
+  }
+  .course .code {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .course .name {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--text);
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  @media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-grid h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .contact-grid h3 em { color: var(--accent); font-style: italic; }
+  .contact-grid p {
+    color: var(--text-dim);
+    font-size: 16px;
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+  .socials { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--line); }
+  .socials a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    text-decoration: none;
+    transition: padding 0.3s, color 0.3s;
+  }
+  .socials a:hover { padding-left: 16px; color: var(--accent); }
+  .socials .label {
+    font-family: var(--serif);
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .socials .handle {
+    font-size: 12px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+  }
+  .socials a:hover .handle { color: var(--text-dim); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 40px 0;
+    color: var(--text-mute);
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer .built {
+    color: var(--text-mute);
+  }
+  footer .built span { color: var(--accent); }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="#" class="logo">mayank<span>.</span></a>
+    <ul>
+      <li><a href="#about">01 / About</a></li>
+      <li><a href="#projects">02 / Work</a></li>
+      <li><a href="#publications">03 / Reports</a></li>
+      <li><a href="#skills">04 / Stack</a></li>
+      <li><a href="#contact">05 / Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="meta-line">
+        <div class="dot"></div>
+        <span>Available for Summer / Full-Time '26</span>
+        <span>—</span>
+        <span>Boston, MA</span>
+      </div>
+
+      <h1 class="name">Mayank Goud<br/><em>Polagoni.</em></h1>
+
+      <p class="tag">
+        <strong>Computer vision &amp; reinforcement learning researcher</strong> —
+        building perception systems that see, track, and decide. Currently a graduate
+        student at Northeastern University, working at the intersection of deep learning,
+        real-time tracking, and autonomous control.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#projects" class="btn primary">View Work <span class="arrow">↗</span></a>
+        <a href="#contact" class="btn">Get in touch</a>
+        <a href="resume.pdf" class="btn" download>Download CV</a>
+      </div>
+
+      <div class="hero-spec">
+        <div>
+          <div class="label">Focus</div>
+          <div class="value">Computer Vision</div>
+        </div>
+        <div>
+          <div class="label">Program</div>
+          <div class="value">MS Computer Science</div>
+        </div>
+        <div>
+          <div class="label">Institution</div>
+          <div class="value">Northeastern</div>
+        </div>
+        <div>
+          <div class="label">Graduating</div>
+          <div class="value">Spring 2027</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">/ 01</span>
+      <h2>About <em>the work.</em></h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="lead">
+          I work on the parts of vision systems that have to be right in real time —
+          detection, tracking, and the geometry that ties pixels back to the physical world.
+        </p>
+        <p>
+          My research combines <strong>classical computer vision</strong> — feature
+          descriptors, calibration, multi-view geometry — with <strong>modern deep
+          learning</strong> pipelines for detection, tracking, and recognition. I care
+          about systems that hold up outside benchmarks: latency budgets, occlusion,
+          domain shift, the unglamorous failure modes.
+        </p>
+        <p>
+          On the RL side, I've trained PPO, SAC, and TD3 agents in the F1TENTH autonomous
+          racing simulator, comparing them against classical control baselines. I'm
+          drawn to problems where <strong>perception meets control</strong> — where a
+          model has to look at the world and act on it before the next frame.
+        </p>
+        <p>
+          Outside the lab: Formula 1, Marvel marathons, and exploring Boston.
+        </p>
+      </div>
+
+      <aside class="info-card reveal">
+        <div class="row"><span class="k">Name</span><span class="v">M. G. Polagoni</span></div>
+        <div class="row"><span class="k">Role</span><span class="v">Grad Researcher</span></div>
+        <div class="row"><span class="k">Lab</span><span class="v">Khoury / COE</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2nd Semester</span></div>
+        <div class="row"><span class="k">GPA</span><span class="v">—</span></div>
+        <div class="row"><span class="k">Languages</span><span class="v">EN · TE · HI</span></div>
+        <div class="row"><span class="k">Open to</span><span class="v">Internships</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">/ 02</span>
+      <h2>Selected <em>work.</em></h2>
+    </div>
+
+    <div class="projects">
+
+      <article class="project reveal">
+        <div class="pnum">001</div>
+        <div class="ptitle">
+          <div class="ctx">CS 5330 · <span>Final Project</span></div>
+          <h3>Real-time Multi-Object Tracking</h3>
+        </div>
+        <div class="pdesc">
+          Built a tracking pipeline from scratch combining YOLOv8n detection, a custom
+          Kalman Filter for motion prediction, and the Hungarian algorithm for data
+          association. Custom association logic was implemented end-to-end to satisfy
+          original-contribution requirements. Delivered an IEEE-format report and live demo.
+          <div class="tags">
+            <span>YOLOv8</span><span>Kalman Filter</span><span>Hungarian</span><span>Python</span><span>OpenCV</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="pnum">002</div>
+        <div class="ptitle">
+          <div class="ctx">CS 5180 · <span>Final Project</span></div>
+          <h3>Deep RL for Autonomous Racing</h3>
+        </div>
+        <div class="pdesc">
+          Comparative study of PPO, SAC, and TD3 against classical control baselines in
+          the F1TENTH autonomous racing simulator. Investigated sample efficiency,
+          stability, and lap-time performance under varying reward shaping. Published
+          as a publication-quality report in AAAI two-column format.
+          <div class="tags">
+            <span>PPO</span><span>SAC</span><span>TD3</span><span>F1TENTH</span><span>PyTorch</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="pnum">003</div>
+        <div class="ptitle">
+          <div class="ctx">CS 5330 · <span>Project 5</span></div>
+          <h3>Deep Learning Vision Pipeline</h3>
+        </div>
+        <div class="pdesc">
+          End-to-end image recognition pipeline: CNN baseline, Vision Transformer
+          fine-tuning, and Gabor filter feature extensions for comparative analysis.
+          Reported with full ablations and a Word-compatible technical writeup.
+          <div class="tags">
+            <span>CNN</span><span>ViT</span><span>Gabor Filters</span><span>PyTorch</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="pnum">004</div>
+        <div class="ptitle">
+          <div class="ctx">CS 5330 · <span>Project 4</span></div>
+          <h3>Camera Calibration &amp; AR</h3>
+        </div>
+        <div class="pdesc">
+          C++ / OpenCV implementation of intrinsic camera calibration and real-time
+          augmented reality overlays. Four extensions including animated 3D scenes
+          and keyboard-controlled virtual objects projected onto a checkerboard pattern.
+          <div class="tags">
+            <span>C++</span><span>OpenCV</span><span>AR</span><span>Calibration</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="pnum">005</div>
+        <div class="ptitle">
+          <div class="ctx">CS 5180 · <span>Coursework</span></div>
+          <h3>Deep RL Algorithms in PyTorch</h3>
+        </div>
+        <div class="pdesc">
+          Implemented REINFORCE, DDPG, TD3, SAC, and PPO from scratch on CartPole and
+          continuous control benchmarks. Worked through derivations of policy gradient
+          theorems and trajectory probability before implementation.
+          <div class="tags">
+            <span>Policy Gradient</span><span>Actor-Critic</span><span>PyTorch</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="pnum">006</div>
+        <div class="ptitle">
+          <div class="ctx">Independent · <span>Tooling</span></div>
+          <h3>Custom Calendar Tracker</h3>
+        </div>
+        <div class="pdesc">
+          Self-contained interactive calendar tracker built as a single HTML file with
+          persistent file-based storage. Designed for personal task / project tracking
+          with zero dependencies and offline-first behavior.
+          <div class="tags">
+            <span>HTML</span><span>JS</span><span>Local Storage</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">/ 03</span>
+      <h2>Reports &amp; <em>writeups.</em></h2>
+    </div>
+
+    <div class="pubs">
+      <a href="#" class="pub reveal">
+        <div class="ptype">Course Report · AAAI Format</div>
+        <h4>Comparative Analysis of PPO, SAC, and TD3 in the F1TENTH Autonomous Racing Simulator</h4>
+        <div class="pmeta">CS 5180 · Reinforcement Learning · Spring 2026</div>
+      </a>
+      <a href="#" class="pub reveal">
+        <div class="ptype">Course Report · IEEE Format</div>
+        <h4>Real-Time Multi-Object Tracking with YOLOv8, Kalman Filtering, and Hungarian Assignment</h4>
+        <div class="pmeta">CS 5330 · Pattern Recognition &amp; Computer Vision · Spring 2026</div>
+      </a>
+      <a href="#" class="pub reveal">
+        <div class="ptype">Technical Report</div>
+        <h4>CNN, Vision Transformer, and Gabor Filter Approaches to Image Classification</h4>
+        <div class="pmeta">CS 5330 · Project 5 · 2026</div>
+      </a>
+      <a href="#" class="pub reveal">
+        <div class="ptype">Presentation</div>
+        <h4>Scale-Invariant Feature Transform (SIFT): A Topic Presentation</h4>
+        <div class="pmeta">CS 5330 · 12 slides · ~9:40 narration</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">/ 04</span>
+      <h2>Stack &amp; <em>coursework.</em></h2>
+    </div>
+
+    <div class="skills-grid reveal">
+      <div class="skill-block">
+        <h5>Computer Vision</h5>
+        <ul>
+          <li>OpenCV (C++ / Python)</li>
+          <li>YOLO, SIFT, Gabor filters</li>
+          <li>Camera calibration &amp; AR</li>
+          <li>Multi-object tracking</li>
+          <li>Vision Transformers</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h5>Reinforcement Learning</h5>
+        <ul>
+          <li>PPO, SAC, TD3, DDPG</li>
+          <li>REINFORCE / Policy gradient</li>
+          <li>Q-learning, SARSA, Dyna-Q</li>
+          <li>MCTS &amp; planning</li>
+          <li>F1TENTH simulator</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h5>ML &amp; Deep Learning</h5>
+        <ul>
+          <li>PyTorch, NumPy, scikit-learn</li>
+          <li>CNN architectures</li>
+          <li>Transformer fine-tuning</li>
+          <li>Kalman / Hungarian algorithms</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h5>Languages &amp; Tools</h5>
+        <ul>
+          <li>Python, C++, JavaScript</li>
+          <li>LaTeX (IEEE / AAAI)</li>
+          <li>Git, Linux, CUDA</li>
+          <li>Google Colab, rclone, aria2c</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="courses">
+      <div class="course reveal">
+        <div class="code">CS 5180</div>
+        <div class="name">Reinforcement Learning</div>
+      </div>
+      <div class="course reveal">
+        <div class="code">CS 5330</div>
+        <div class="name">Pattern Recognition &amp; CV</div>
+      </div>
+      <div class="course reveal">
+        <div class="code">CS 5800</div>
+        <div class="name">Algorithms</div>
+      </div>
+      <div class="course reveal">
+        <div class="code">CS 5200</div>
+        <div class="name">Database Management</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">/ 05</span>
+      <h2>Get in <em>touch.</em></h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="reveal">
+        <h3>Have a problem<br/>worth <em>seeing?</em></h3>
+        <p>
+          I'm open to research collaborations, summer internships, and full-time roles
+          starting Spring 2027 in computer vision, perception, autonomy, and applied ML.
+          The fastest way to reach me is email.
+        </p>
+        <a href="mailto:polagoni.m@northeastern.edu" class="btn primary">
+          polagoni.m@northeastern.edu <span class="arrow">↗</span>
+        </a>
+      </div>
+
+      <div class="socials reveal">
+        <a href="#"><span class="label">GitHub</span><span class="handle">@mayank — ↗</span></a>
+        <a href="#"><span class="label">LinkedIn</span><span class="handle">/in/mayank — ↗</span></a>
+        <a href="#"><span class="label">Google Scholar</span><span class="handle">profile — ↗</span></a>
+        <a href="resume.pdf" download><span class="label">Résumé</span><span class="handle">PDF — ↓</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+    <div>© 2026 Mayank Goud Polagoni</div>
+    <div class="built">Built with care · <span>Boston, MA</span></div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        // small stagger for siblings
+        const delay = Math.min(i * 60, 240);
+        setTimeout(() => e.target.classList.add('in'), delay);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Smooth nav highlight (optional)
+  const navLinks = document.querySelectorAll('nav ul a');
+  const sections = [...document.querySelectorAll('section[id]')];
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY + 120;
+    let active = '';
+    sections.forEach(s => {
+      if (s.offsetTop <= y) active = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + active ? 'var(--text)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
