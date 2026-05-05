@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mayank Goud Polagoni — Computer Vision Portfolio</title>
-<meta name="description" content="Mayank Goud Polagoni — graduate researcher in computer vision and reinforcement learning at Northeastern University." />
+<title>Mayank Goud Polagoni — Robotics & Computer Vision</title>
+<meta name="description" content="Mayank Goud Polagoni — MS Robotics graduate at Northeastern University. Research in computer vision, reinforcement learning, SLAM, and mobile robot navigation." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -19,8 +19,8 @@
     --text: #e8ecf2;
     --text-dim: #8a93a3;
     --text-mute: #5b6473;
-    --accent: #c4f04c;       /* electric lime */
-    --accent-2: #6cc6ff;     /* cool cyan */
+    --accent: #c4f04c;
+    --accent-2: #6cc6ff;
     --warn: #ff8a4c;
     --serif: "Fraunces", "Times New Roman", serif;
     --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -41,7 +41,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Grid background */
   body::before {
     content: "";
     position: fixed;
@@ -126,9 +125,7 @@
     transition: width 0.3s;
   }
   nav ul a:hover::before { width: 100%; }
-  @media (max-width: 720px) {
-    nav ul { display: none; }
-  }
+  @media (max-width: 720px) { nav ul { display: none; } }
 
   /* HERO */
   header.hero {
@@ -153,6 +150,7 @@
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin-bottom: 32px;
+    flex-wrap: wrap;
     animation: fadeUp 0.8s ease both;
   }
   .meta-line .dot {
@@ -184,7 +182,7 @@
   .tag {
     font-size: 17px;
     color: var(--text-dim);
-    max-width: 620px;
+    max-width: 660px;
     line-height: 1.65;
     margin-bottom: 40px;
     animation: fadeUp 0.9s 0.2s ease both;
@@ -241,6 +239,7 @@
   .hero-spec > div {
     padding: 20px 0;
     border-right: 1px solid var(--line);
+    padding-right: 16px;
   }
   .hero-spec > div:last-child { border-right: none; }
   .hero-spec .label {
@@ -252,8 +251,9 @@
   }
   .hero-spec .value {
     font-family: var(--serif);
-    font-size: 18px;
+    font-size: 17px;
     color: var(--text);
+    line-height: 1.2;
   }
   @media (max-width: 720px) {
     .hero-spec { grid-template-columns: repeat(2, 1fr); }
@@ -269,10 +269,7 @@
   }
 
   /* SECTIONS */
-  section {
-    padding: 120px 0;
-    position: relative;
-  }
+  section { padding: 120px 0; position: relative; }
   .section-head {
     display: flex;
     align-items: baseline;
@@ -280,6 +277,7 @@
     margin-bottom: 60px;
     padding-bottom: 20px;
     border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
   }
   .section-head .num {
     color: var(--accent);
@@ -303,7 +301,7 @@
   }
   @media (max-width: 880px) { .about-grid { grid-template-columns: 1fr; } }
   .about-text p {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.75;
     color: var(--text-dim);
     margin-bottom: 20px;
@@ -332,10 +330,58 @@
     padding: 14px 0;
     border-bottom: 1px dashed var(--line);
     font-size: 13px;
+    gap: 12px;
   }
   .info-card .row:last-child { border-bottom: none; }
-  .info-card .row .k { color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; }
-  .info-card .row .v { color: var(--text); }
+  .info-card .row .k { color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; flex-shrink: 0; }
+  .info-card .row .v { color: var(--text); text-align: right; }
+
+  /* EXPERIENCE / TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    border-left: 1px solid var(--line);
+  }
+  .tl-item {
+    position: relative;
+    padding-bottom: 36px;
+  }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -34px;
+    top: 6px;
+    width: 11px; height: 11px;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+  }
+  .tl-item .when {
+    font-size: 11px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+  .tl-item h4 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -0.005em;
+  }
+  .tl-item .where {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .tl-item .what {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
 
   /* PROJECTS */
   .projects {
@@ -346,11 +392,11 @@
   }
   .project {
     display: grid;
-    grid-template-columns: 80px 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 60px 1.1fr 1.4fr;
+    gap: 32px;
     padding: 36px 0;
     border-bottom: 1px solid var(--line);
-    transition: background 0.3s, padding 0.3s;
+    transition: background 0.3s;
     align-items: start;
     position: relative;
   }
@@ -376,23 +422,55 @@
   .project .ptitle h3 {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: 26px;
+    font-size: 24px;
     line-height: 1.2;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     letter-spacing: -0.01em;
   }
-  .project .ptitle .ctx {
-    font-size: 12px;
+  .project .ctx {
+    font-size: 11px;
     color: var(--text-mute);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     margin-bottom: 14px;
   }
-  .project .ptitle .ctx span { color: var(--accent); }
+  .project .ctx span { color: var(--accent); }
+  .project .collab {
+    font-size: 12px;
+    color: var(--text-mute);
+    margin-top: 12px;
+    font-style: italic;
+  }
   .project .pdesc {
     color: var(--text-dim);
     font-size: 14px;
     line-height: 1.65;
+  }
+  .project .metrics {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .project .metrics > div {
+    background: var(--surface);
+    padding: 10px 12px;
+  }
+  .project .metrics .m-label {
+    font-size: 9px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 2px;
+  }
+  .project .metrics .m-value {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--accent);
   }
   .project .tags {
     margin-top: 14px;
@@ -401,8 +479,8 @@
     gap: 6px;
   }
   .project .tags span {
-    font-size: 11px;
-    padding: 3px 10px;
+    font-size: 10px;
+    padding: 3px 9px;
     border: 1px solid var(--line-strong);
     color: var(--text-dim);
     border-radius: 100px;
@@ -420,7 +498,7 @@
     background: var(--surface);
     border: 1px solid var(--line);
     border-left: 2px solid var(--accent-2);
-    padding: 24px 28px;
+    padding: 22px 26px;
     border-radius: var(--radius);
     transition: all 0.3s;
     text-decoration: none;
@@ -442,7 +520,7 @@
   .pub h4 {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: 19px;
+    font-size: 18px;
     line-height: 1.35;
     margin-bottom: 8px;
   }
@@ -492,7 +570,7 @@
   .courses {
     margin-top: 60px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 16px;
   }
   .course {
@@ -500,7 +578,9 @@
     border: 1px solid var(--line);
     padding: 18px 20px;
     border-radius: var(--radius);
+    transition: border-color 0.25s;
   }
+  .course:hover { border-color: var(--accent); }
   .course .code {
     font-size: 11px;
     color: var(--accent);
@@ -509,7 +589,7 @@
   }
   .course .name {
     font-family: var(--serif);
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text);
   }
 
@@ -546,19 +626,21 @@
     color: var(--text);
     text-decoration: none;
     transition: padding 0.3s, color 0.3s;
+    gap: 12px;
   }
   .socials a:hover { padding-left: 16px; color: var(--accent); }
   .socials .label {
     font-family: var(--serif);
-    font-size: 22px;
+    font-size: 21px;
     letter-spacing: -0.01em;
   }
   .socials .handle {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-mute);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     transition: color 0.3s;
+    text-align: right;
   }
   .socials a:hover .handle { color: var(--text-dim); }
 
@@ -568,17 +650,20 @@
     padding: 40px 0;
     color: var(--text-mute);
     font-size: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  footer .inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 32px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 12px;
   }
-  footer .built {
-    color: var(--text-mute);
-  }
   footer .built span { color: var(--accent); }
 
-  /* Reveal on scroll */
   .reveal {
     opacity: 0;
     transform: translateY(28px);
@@ -597,10 +682,11 @@
     <a href="#" class="logo">mayank<span>.</span></a>
     <ul>
       <li><a href="#about">01 / About</a></li>
-      <li><a href="#projects">02 / Work</a></li>
-      <li><a href="#publications">03 / Reports</a></li>
-      <li><a href="#skills">04 / Stack</a></li>
-      <li><a href="#contact">05 / Contact</a></li>
+      <li><a href="#experience">02 / Experience</a></li>
+      <li><a href="#projects">03 / Work</a></li>
+      <li><a href="#publications">04 / Reports</a></li>
+      <li><a href="#skills">05 / Stack</a></li>
+      <li><a href="#contact">06 / Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -610,7 +696,9 @@
     <div class="hero-grid">
       <div class="meta-line">
         <div class="dot"></div>
-        <span>Available for Summer / Full-Time '26</span>
+        <span>Graduating May 2026</span>
+        <span>—</span>
+        <span>Open to Robotics / CV / ML roles</span>
         <span>—</span>
         <span>Boston, MA</span>
       </div>
@@ -618,26 +706,22 @@
       <h1 class="name">Mayank Goud<br/><em>Polagoni.</em></h1>
 
       <p class="tag">
-        <strong>Computer vision &amp; reinforcement learning researcher</strong> —
-        building perception systems that see, track, and decide. Currently a graduate
-        student at Northeastern University, working at the intersection of deep learning,
-        real-time tracking, and autonomous control.
+        <strong>MS Robotics graduate</strong> at Northeastern University, working at the
+        intersection of <strong>computer vision, reinforcement learning, and mobile
+        robotics</strong>. I build perception and control systems for robots — SLAM,
+        multi-object tracking, sample-based planning, and deep RL for autonomous racing.
       </p>
 
       <div class="hero-cta">
         <a href="#projects" class="btn primary">View Work <span class="arrow">↗</span></a>
         <a href="#contact" class="btn">Get in touch</a>
-        <a href="resume.pdf" class="btn" download>Download CV</a>
+        <a href="resume.pdf" class="btn" target="_blank">Download CV ↓</a>
       </div>
 
       <div class="hero-spec">
         <div>
-          <div class="label">Focus</div>
-          <div class="value">Computer Vision</div>
-        </div>
-        <div>
-          <div class="label">Program</div>
-          <div class="value">MS Computer Science</div>
+          <div class="label">Degree</div>
+          <div class="value">MS Robotics</div>
         </div>
         <div>
           <div class="label">Institution</div>
@@ -645,7 +729,11 @@
         </div>
         <div>
           <div class="label">Graduating</div>
-          <div class="value">Spring 2027</div>
+          <div class="value">May 2026</div>
+        </div>
+        <div>
+          <div class="label">Focus</div>
+          <div class="value">CV · RL · SLAM</div>
         </div>
       </div>
     </div>
@@ -662,36 +750,84 @@
     <div class="about-grid">
       <div class="about-text reveal">
         <p class="lead">
-          I work on the parts of vision systems that have to be right in real time —
-          detection, tracking, and the geometry that ties pixels back to the physical world.
+          I work on the parts of robotic systems that have to be right in real time —
+          perception, state estimation, and the geometry that ties pixels and sensor
+          readings back to the physical world.
         </p>
         <p>
-          My research combines <strong>classical computer vision</strong> — feature
-          descriptors, calibration, multi-view geometry — with <strong>modern deep
-          learning</strong> pipelines for detection, tracking, and recognition. I care
-          about systems that hold up outside benchmarks: latency budgets, occlusion,
-          domain shift, the unglamorous failure modes.
+          My research at Northeastern combines <strong>classical robotics</strong>
+          — Kalman filtering, Hungarian assignment, MPC, sensor fusion — with
+          <strong>modern learning-based approaches</strong> like deep RL, vision
+          transformers, and Gaussian process planners. I'm drawn to problems where
+          perception meets control, where a model has to look at the world and act on
+          it before the next frame.
         </p>
         <p>
-          On the RL side, I've trained PPO, SAC, and TD3 agents in the F1TENTH autonomous
-          racing simulator, comparing them against classical control baselines. I'm
-          drawn to problems where <strong>perception meets control</strong> — where a
-          model has to look at the world and act on it before the next frame.
+          Recent projects span <strong>SLAM on snake-like robots</strong>
+          (RTAB-Map onboard COBRA), <strong>multi-object tracking from scratch</strong>
+          (YOLOv8 + custom Kalman + Hungarian), <strong>deep RL for autonomous racing</strong>
+          (PPO vs SAC vs TD3 on F1TENTH), and <strong>GP-guided MPPI navigation</strong>
+          in unknown cluttered environments.
         </p>
         <p>
-          Outside the lab: Formula 1, Marvel marathons, and exploring Boston.
+          Before grad school, I worked as a research intern at the <strong>Defence
+          Research and Development Laboratory (DRDL)</strong> in Hyderabad on DC motor
+          control. Outside the lab: Formula 1, Marvel marathons, and exploring Boston.
         </p>
       </div>
 
       <aside class="info-card reveal">
         <div class="row"><span class="k">Name</span><span class="v">M. G. Polagoni</span></div>
-        <div class="row"><span class="k">Role</span><span class="v">Grad Researcher</span></div>
-        <div class="row"><span class="k">Lab</span><span class="v">Khoury / COE</span></div>
-        <div class="row"><span class="k">Year</span><span class="v">2nd Semester</span></div>
-        <div class="row"><span class="k">GPA</span><span class="v">—</span></div>
+        <div class="row"><span class="k">Degree</span><span class="v">MS Robotics</span></div>
+        <div class="row"><span class="k">School</span><span class="v">Northeastern</span></div>
+        <div class="row"><span class="k">Grad</span><span class="v">May 2026</span></div>
+        <div class="row"><span class="k">Prior</span><span class="v">B.Tech EEE, CVR</span></div>
         <div class="row"><span class="k">Languages</span><span class="v">EN · TE · HI</span></div>
-        <div class="row"><span class="k">Open to</span><span class="v">Internships</span></div>
+        <div class="row"><span class="k">Status</span><span class="v">Seeking FT roles</span></div>
       </aside>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">/ 02</span>
+      <h2>Education &amp; <em>experience.</em></h2>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="when">Sep 2024 — May 2026</div>
+        <h4>Master of Science, Robotics</h4>
+        <div class="where">Northeastern University · College of Engineering · Boston, MA</div>
+        <div class="what">
+          Coursework spanning Robotic Sensing &amp; Navigation, Mobile Robotics, Pattern
+          Recognition &amp; Computer Vision, Reinforcement Learning, Control Systems
+          Engineering, Robot Mechanics &amp; Control, and Human–Robot Interaction.
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="when">Oct 2022 — Jan 2023</div>
+        <h4>Research Intern</h4>
+        <div class="where">Defence Research and Development Laboratory (DRDL) · Hyderabad, India</div>
+        <div class="what">
+          Designed a state-feedback gain matrix for DC motor control, optimizing damping
+          ratio and natural frequency. Tuned parameters to improve motor response time
+          and operational efficiency by ~20%, with a ~35% reduction in oscillations.
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="when">2019 — 2023</div>
+        <h4>Bachelor of Technology, Electrical &amp; Electronics Engineering</h4>
+        <div class="where">CVR College of Engineering · Hyderabad, India</div>
+        <div class="what">
+          Foundational training in electrical systems, control theory, signals &amp;
+          systems, and embedded hardware — the groundwork for a transition into robotics.
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -699,7 +835,7 @@
 <section id="projects">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="num">/ 02</span>
+      <span class="num">/ 03</span>
       <h2>Selected <em>work.</em></h2>
     </div>
 
@@ -708,16 +844,24 @@
       <article class="project reveal">
         <div class="pnum">001</div>
         <div class="ptitle">
-          <div class="ctx">CS 5330 · <span>Final Project</span></div>
-          <h3>Real-time Multi-Object Tracking</h3>
+          <div class="ctx">CS 5180 · <span>RL Final Project · Spring 2026</span></div>
+          <h3>On-Policy vs. Off-Policy Deep RL for Autonomous Racing in F1TENTH</h3>
+          <div class="collab">with Kushwanth Vellanki</div>
         </div>
         <div class="pdesc">
-          Built a tracking pipeline from scratch combining YOLOv8n detection, a custom
-          Kalman Filter for motion prediction, and the Hungarian algorithm for data
-          association. Custom association logic was implemented end-to-end to satisfy
-          original-contribution requirements. Delivered an IEEE-format report and live demo.
+          Systematic empirical comparison of PPO, SAC, and TD3 against classical baselines
+          (Reactive LiDAR controller, Pure Pursuit) in the F1TENTH Gym simulator.
+          Evaluation across five axes: sample efficiency, final performance, multi-seed
+          stability, generalization to an unseen Berlin track, and reward-shaping ablation.
+          SAC and TD3 dominate — roughly 2× the reward of the best classical baseline.
+          <div class="metrics">
+            <div><div class="m-label">SAC Avg R</div><div class="m-value">0.289</div></div>
+            <div><div class="m-label">SAC Speed</div><div class="m-value">2.89 m/s</div></div>
+            <div><div class="m-label">TD3 Peak</div><div class="m-value">3.0 m/s</div></div>
+            <div><div class="m-label">Tracks</div><div class="m-value">5 maps</div></div>
+          </div>
           <div class="tags">
-            <span>YOLOv8</span><span>Kalman Filter</span><span>Hungarian</span><span>Python</span><span>OpenCV</span>
+            <span>PPO</span><span>SAC</span><span>TD3</span><span>F1TENTH Gym</span><span>PyTorch</span><span>LiDAR</span><span>Ackermann</span>
           </div>
         </div>
       </article>
@@ -725,16 +869,25 @@
       <article class="project reveal">
         <div class="pnum">002</div>
         <div class="ptitle">
-          <div class="ctx">CS 5180 · <span>Final Project</span></div>
-          <h3>Deep RL for Autonomous Racing</h3>
+          <div class="ctx">CS 5330 · <span>CV Final Project · Spring 2026</span></div>
+          <h3>Real-Time Multi-Object Tracking with Custom Data Association</h3>
+          <div class="collab">with Kushwanth Vellanki</div>
         </div>
         <div class="pdesc">
-          Comparative study of PPO, SAC, and TD3 against classical control baselines in
-          the F1TENTH autonomous racing simulator. Investigated sample efficiency,
-          stability, and lap-time performance under varying reward shaping. Published
-          as a publication-quality report in AAAI two-column format.
+          Tracking-by-detection pipeline built from scratch. YOLOv8n provides per-frame
+          person detections; a custom Kalman Filter predicts motion using a 4D state
+          [cx, cy, vx, vy]; the Hungarian algorithm performs detection-to-track
+          assignment. Supports both IoU and Euclidean distance cost matrices. Five
+          experiments cover stability, fast motion, matching strategies, occlusion,
+          and real-time throughput.
+          <div class="metrics">
+            <div><div class="m-label">Throughput</div><div class="m-value">5.9–8.9 FPS</div></div>
+            <div><div class="m-label">Detector</div><div class="m-value">YOLOv8n</div></div>
+            <div><div class="m-label">Cost Fns</div><div class="m-value">IoU / L2</div></div>
+            <div><div class="m-label">Hardware</div><div class="m-value">Laptop CPU</div></div>
+          </div>
           <div class="tags">
-            <span>PPO</span><span>SAC</span><span>TD3</span><span>F1TENTH</span><span>PyTorch</span>
+            <span>YOLOv8</span><span>Kalman Filter</span><span>Hungarian</span><span>OpenCV</span><span>Python</span>
           </div>
         </div>
       </article>
@@ -742,15 +895,24 @@
       <article class="project reveal">
         <div class="pnum">003</div>
         <div class="ptitle">
-          <div class="ctx">CS 5330 · <span>Project 5</span></div>
-          <h3>Deep Learning Vision Pipeline</h3>
+          <div class="ctx">EECE 5550 · <span>Mobile Robotics Final · Spring 2025</span></div>
+          <h3>GP-guided MPPI for Navigation in Unknown Cluttered Environments</h3>
         </div>
         <div class="pdesc">
-          End-to-end image recognition pipeline: CNN baseline, Vision Transformer
-          fine-tuning, and Gabor filter feature extensions for comparative analysis.
-          Reported with full ablations and a Word-compatible technical writeup.
+          Implementation of a Gaussian Process-guided Model Predictive Path Integral
+          controller, following Mohamed et al. (2023). A Sparse Gaussian Process
+          occupancy model built from LiDAR estimates both occupancy and uncertainty
+          — high-variance regions become subgoals that guide MPPI beyond its planning
+          horizon, escaping local-minima traps that hinder vanilla MPPI in cluttered
+          maps. Evaluated across three environments of escalating difficulty.
+          <div class="metrics">
+            <div><div class="m-label">Method</div><div class="m-value">GP-MPPI</div></div>
+            <div><div class="m-label">Sensor</div><div class="m-value">2D LiDAR</div></div>
+            <div><div class="m-label">Envs</div><div class="m-value">3 maps</div></div>
+            <div><div class="m-label">Solo</div><div class="m-value">✓</div></div>
+          </div>
           <div class="tags">
-            <span>CNN</span><span>ViT</span><span>Gabor Filters</span><span>PyTorch</span>
+            <span>MPPI</span><span>Sparse GP</span><span>Sampling-based MPC</span><span>Python</span>
           </div>
         </div>
       </article>
@@ -758,15 +920,25 @@
       <article class="project reveal">
         <div class="pnum">004</div>
         <div class="ptitle">
-          <div class="ctx">CS 5330 · <span>Project 4</span></div>
-          <h3>Camera Calibration &amp; AR</h3>
+          <div class="ctx">EECE 5554 · <span>RSN Final · Fall 2024</span></div>
+          <h3>RTAB-Map SLAM Onboard COBRA — A Snake-Inspired Rolling Robot</h3>
+          <div class="collab">with Henry Noyes, Nishad Rajhans, Sai Kiran Athaluri</div>
         </div>
         <div class="pdesc">
-          C++ / OpenCV implementation of intrinsic camera calibration and real-time
-          augmented reality overlays. Four extensions including animated 3D scenes
-          and keyboard-controlled virtual objects projected onto a checkerboard pattern.
+          Deployed RTAB-Map (Real-Time Appearance-Based Mapping) onboard COBRA, an
+          11-joint sidewinding robot built at Northeastern. Stack: Intel RealSense D435i
+          (RGB-D + IMU) feeding a Jetson Orin NX 8GB. Benchmarked RTAB odometry against
+          OptiTrack ground truth using Evo. Documented graceful degradation during fast
+          sidewinding gaits (motion blur) and proposed LiDAR fusion for sparse-feature
+          environments.
+          <div class="metrics">
+            <div><div class="m-label">Compute</div><div class="m-value">Jetson Orin NX</div></div>
+            <div><div class="m-label">Sensor</div><div class="m-value">RealSense D435i</div></div>
+            <div><div class="m-label">GT</div><div class="m-value">OptiTrack</div></div>
+            <div><div class="m-label">Method</div><div class="m-value">RTAB-Map</div></div>
+          </div>
           <div class="tags">
-            <span>C++</span><span>OpenCV</span><span>AR</span><span>Calibration</span>
+            <span>SLAM</span><span>RTAB-Map</span><span>RGB-D</span><span>ROS</span><span>SIFT</span><span>Loop Closure</span>
           </div>
         </div>
       </article>
@@ -774,15 +946,26 @@
       <article class="project reveal">
         <div class="pnum">005</div>
         <div class="ptitle">
-          <div class="ctx">CS 5180 · <span>Coursework</span></div>
-          <h3>Deep RL Algorithms in PyTorch</h3>
+          <div class="ctx">CS 6983 · <span>HRI Final · Spring 2026</span></div>
+          <h3>Evaluating HRI with a Competitive Cozmo Robot</h3>
+          <div class="collab">with R. A. Fernandes, L. Chandrasekar, K. Vellanki — Team Velocity</div>
         </div>
         <div class="pdesc">
-          Implemented REINFORCE, DDPG, TD3, SAC, and PPO from scratch on CartPole and
-          continuous control benchmarks. Worked through derivations of policy gradient
-          theorems and trajectory probability before implementation.
+          A within-subjects user study (N=24) evaluating how robot personality
+          modulates user perception during a synchronous Rock-Paper-Scissors game with
+          an Anki Cozmo. Built a custom Python pipeline using MediaPipe Hands (21 3D
+          landmarks) on a laptop webcam after Cozmo's onboard camera proved too laggy
+          for real-time gesture recognition. Three conditions — Neutral, Supportive,
+          Competitive — modulated verbal, facial, and physical reactions. Supportive
+          rated friendliest, but Competitive drove the highest voluntary engagement.
+          <div class="metrics">
+            <div><div class="m-label">Participants</div><div class="m-value">N = 24</div></div>
+            <div><div class="m-label">Conditions</div><div class="m-value">3</div></div>
+            <div><div class="m-label">Vision</div><div class="m-value">MediaPipe</div></div>
+            <div><div class="m-label">Robot</div><div class="m-value">Anki Cozmo</div></div>
+          </div>
           <div class="tags">
-            <span>Policy Gradient</span><span>Actor-Critic</span><span>PyTorch</span>
+            <span>HRI</span><span>MediaPipe</span><span>Gesture Recognition</span><span>User Study</span><span>Python</span>
           </div>
         </div>
       </article>
@@ -790,15 +973,76 @@
       <article class="project reveal">
         <div class="pnum">006</div>
         <div class="ptitle">
-          <div class="ctx">Independent · <span>Tooling</span></div>
-          <h3>Custom Calendar Tracker</h3>
+          <div class="ctx">Resume Project · <span>Sensor Fusion</span></div>
+          <h3>GPS &amp; IMU Sensor Fusion for Automotive Dead Reckoning</h3>
         </div>
         <div class="pdesc">
-          Self-contained interactive calendar tracker built as a single HTML file with
-          persistent file-based storage. Designed for personal task / project tracking
-          with zero dependencies and offline-first behavior.
+          Custom Python ROS2 drivers for real-time GPS and IMU acquisition mounted on a
+          vehicle. Characterized IMU noise via Allan Variance, calibrated the
+          magnetometer (hard-iron / soft-iron correction), compensated accelerometer
+          bias for forward-velocity estimation, and fused gyroscope + magnetometer yaw
+          for heading. Implemented an Extended Kalman Filter to recover the vehicle's
+          trajectory through GPS-denied segments.
+          <div class="metrics">
+            <div><div class="m-label">Filter</div><div class="m-value">EKF</div></div>
+            <div><div class="m-label">Sensors</div><div class="m-value">GPS + IMU</div></div>
+            <div><div class="m-label">Stack</div><div class="m-value">ROS 2 / Python</div></div>
+            <div><div class="m-label">Calib.</div><div class="m-value">Allan Var</div></div>
+          </div>
           <div class="tags">
-            <span>HTML</span><span>JS</span><span>Local Storage</span>
+            <span>EKF</span><span>ROS 2</span><span>Sensor Fusion</span><span>Allan Variance</span><span>Magnetometer</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="pnum">007</div>
+        <div class="ptitle">
+          <div class="ctx">ME 5374 · <span>Biomechanics Final · Fall 2025</span></div>
+          <h3>Muscle-Driven Simulation of Human Stair Gait in OpenSim</h3>
+          <div class="collab">with Deelip Kumar Gummadidhala</div>
+        </div>
+        <div class="pdesc">
+          End-to-end pipeline for muscle-driven simulation of stair ambulation using
+          OpenSim 4.5 and MATLAB. Processed raw kinematic and kinetic data from the
+          Darmstadt Stair Ambulation Dataset — coordinate transforms, temporal sync,
+          and signal smoothing. Used MocoInverse trajectory optimization on the
+          gait2392 musculoskeletal model. Validated muscle activation patterns against
+          experimental EMG; quantified concentric hip/ankle propulsion in ascent vs.
+          eccentric knee control in descent.
+          <div class="metrics">
+            <div><div class="m-label">Tool</div><div class="m-value">OpenSim 4.5</div></div>
+            <div><div class="m-label">Method</div><div class="m-value">MocoInverse</div></div>
+            <div><div class="m-label">Model</div><div class="m-value">gait2392</div></div>
+            <div><div class="m-label">Validation</div><div class="m-value">EMG</div></div>
+          </div>
+          <div class="tags">
+            <span>OpenSim</span><span>Biomechanics</span><span>MATLAB</span><span>Inverse Dynamics</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="pnum">008</div>
+        <div class="ptitle">
+          <div class="ctx">ME 5659 · <span>Controls Final · Fall 2024</span></div>
+          <h3>Single-Axis Magnetic Levitation: State-Space Control Design</h3>
+          <div class="collab">with A. Mashhadireza, R. Suhail, H. A. Syed</div>
+        </div>
+        <div class="pdesc">
+          Modeled a single-axis maglev system from Newton's laws and electromagnetic
+          equations into state-space form. Implemented PID and full-state-feedback
+          controllers in MATLAB / Simulink — system stabilized with ~25% maximum
+          overshoot and 2 s settling time. Stability analyzed via Lyapunov functions
+          and controllability matrices, with discussion of nonlinear-dynamics extensions.
+          <div class="metrics">
+            <div><div class="m-label">Overshoot</div><div class="m-value">~25%</div></div>
+            <div><div class="m-label">Settling</div><div class="m-value">2 s</div></div>
+            <div><div class="m-label">Tools</div><div class="m-value">MATLAB / Simulink</div></div>
+            <div><div class="m-label">Analysis</div><div class="m-value">Lyapunov</div></div>
+          </div>
+          <div class="tags">
+            <span>State-Space</span><span>PID</span><span>Lyapunov</span><span>MATLAB</span><span>Simulink</span>
           </div>
         </div>
       </article>
@@ -810,30 +1054,40 @@
 <section id="publications">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="num">/ 03</span>
+      <span class="num">/ 04</span>
       <h2>Reports &amp; <em>writeups.</em></h2>
     </div>
 
     <div class="pubs">
       <a href="#" class="pub reveal">
-        <div class="ptype">Course Report · AAAI Format</div>
-        <h4>Comparative Analysis of PPO, SAC, and TD3 in the F1TENTH Autonomous Racing Simulator</h4>
-        <div class="pmeta">CS 5180 · Reinforcement Learning · Spring 2026</div>
+        <div class="ptype">Course Report · AAAI Two-Column Format</div>
+        <h4>On-Policy vs. Off-Policy Reinforcement Learning for Autonomous Racing in F1TENTH</h4>
+        <div class="pmeta">CS 5180 · Reinforcement Learning · Spring 2026 · with K. Vellanki</div>
       </a>
       <a href="#" class="pub reveal">
         <div class="ptype">Course Report · IEEE Format</div>
-        <h4>Real-Time Multi-Object Tracking with YOLOv8, Kalman Filtering, and Hungarian Assignment</h4>
-        <div class="pmeta">CS 5330 · Pattern Recognition &amp; Computer Vision · Spring 2026</div>
+        <h4>Real-Time Multi-Object Tracking with Custom Data Association and Motion Prediction</h4>
+        <div class="pmeta">CS 5330 · Pattern Recognition &amp; Computer Vision · Spring 2026 · with K. Vellanki</div>
+      </a>
+      <a href="#" class="pub reveal">
+        <div class="ptype">Course Report · IEEE Format</div>
+        <h4>GP-guided MPPI for Efficient Navigation in Complex Unknown Cluttered Environments</h4>
+        <div class="pmeta">EECE 5550 · Mobile Robotics · Spring 2025 · solo</div>
       </a>
       <a href="#" class="pub reveal">
         <div class="ptype">Technical Report</div>
-        <h4>CNN, Vision Transformer, and Gabor Filter Approaches to Image Classification</h4>
-        <div class="pmeta">CS 5330 · Project 5 · 2026</div>
+        <h4>Evaluating HRI with a Competitive Cozmo Robot — A Within-Subjects Study (N=24)</h4>
+        <div class="pmeta">CS 6983 · Human–Robot Interaction · Spring 2026 · Team Velocity</div>
       </a>
       <a href="#" class="pub reveal">
-        <div class="ptype">Presentation</div>
-        <h4>Scale-Invariant Feature Transform (SIFT): A Topic Presentation</h4>
-        <div class="pmeta">CS 5330 · 12 slides · ~9:40 narration</div>
+        <div class="ptype">Technical Report</div>
+        <h4>Muscle-Driven Simulation and Control of Human Stair Gait in OpenSim</h4>
+        <div class="pmeta">ME 5374 · Human Modeling &amp; Simulation · Fall 2025</div>
+      </a>
+      <a href="#" class="pub reveal">
+        <div class="ptype">Final Presentation</div>
+        <h4>RTAB-Map Onboard COBRA — SLAM for a Snake-Inspired Robot</h4>
+        <div class="pmeta">EECE 5554 · Robotic Sensing &amp; Navigation · Fall 2024 · Group 12</div>
       </a>
     </div>
   </div>
@@ -842,68 +1096,62 @@
 <section id="skills">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="num">/ 04</span>
+      <span class="num">/ 05</span>
       <h2>Stack &amp; <em>coursework.</em></h2>
     </div>
 
     <div class="skills-grid reveal">
       <div class="skill-block">
-        <h5>Computer Vision</h5>
+        <h5>Computer Vision &amp; Perception</h5>
         <ul>
           <li>OpenCV (C++ / Python)</li>
-          <li>YOLO, SIFT, Gabor filters</li>
+          <li>YOLOv8, MediaPipe, SIFT</li>
+          <li>RTAB-Map, Loop Closure</li>
+          <li>Multi-object tracking (Kalman + Hungarian)</li>
           <li>Camera calibration &amp; AR</li>
-          <li>Multi-object tracking</li>
-          <li>Vision Transformers</li>
         </ul>
       </div>
       <div class="skill-block">
-        <h5>Reinforcement Learning</h5>
+        <h5>Reinforcement Learning &amp; Planning</h5>
         <ul>
           <li>PPO, SAC, TD3, DDPG</li>
-          <li>REINFORCE / Policy gradient</li>
-          <li>Q-learning, SARSA, Dyna-Q</li>
-          <li>MCTS &amp; planning</li>
-          <li>F1TENTH simulator</li>
+          <li>MPPI &amp; sampling-based MPC</li>
+          <li>Gaussian Process planners</li>
+          <li>F1TENTH Gym, OpenAI Gymnasium</li>
+          <li>Pure Pursuit, reactive control</li>
         </ul>
       </div>
       <div class="skill-block">
-        <h5>ML &amp; Deep Learning</h5>
+        <h5>State Estimation &amp; Controls</h5>
         <ul>
-          <li>PyTorch, NumPy, scikit-learn</li>
-          <li>CNN architectures</li>
-          <li>Transformer fine-tuning</li>
-          <li>Kalman / Hungarian algorithms</li>
+          <li>Kalman Filter, Extended KF</li>
+          <li>Sensor fusion (GPS + IMU)</li>
+          <li>State-space &amp; PID control</li>
+          <li>Lyapunov stability analysis</li>
+          <li>Allan Variance, magnetometer calibration</li>
         </ul>
       </div>
       <div class="skill-block">
-        <h5>Languages &amp; Tools</h5>
+        <h5>Languages, Tools &amp; Robotics</h5>
         <ul>
-          <li>Python, C++, JavaScript</li>
-          <li>LaTeX (IEEE / AAAI)</li>
-          <li>Git, Linux, CUDA</li>
-          <li>Google Colab, rclone, aria2c</li>
+          <li>Python, C, C++, MATLAB</li>
+          <li>ROS / ROS 2, Linux, Git</li>
+          <li>PyTorch, NumPy, SciPy, Simulink</li>
+          <li>Jetson Orin, Intel RealSense</li>
+          <li>SOLIDWORKS, Fusion 360, AutoCAD</li>
         </ul>
       </div>
     </div>
 
     <div class="courses">
-      <div class="course reveal">
-        <div class="code">CS 5180</div>
-        <div class="name">Reinforcement Learning</div>
-      </div>
-      <div class="course reveal">
-        <div class="code">CS 5330</div>
-        <div class="name">Pattern Recognition &amp; CV</div>
-      </div>
-      <div class="course reveal">
-        <div class="code">CS 5800</div>
-        <div class="name">Algorithms</div>
-      </div>
-      <div class="course reveal">
-        <div class="code">CS 5200</div>
-        <div class="name">Database Management</div>
-      </div>
+      <div class="course reveal"><div class="code">CS 5180</div><div class="name">Reinforcement Learning</div></div>
+      <div class="course reveal"><div class="code">CS 5330</div><div class="name">Pattern Recognition &amp; CV</div></div>
+      <div class="course reveal"><div class="code">CS 6983</div><div class="name">Human–Robot Interaction</div></div>
+      <div class="course reveal"><div class="code">EECE 5550</div><div class="name">Mobile Robotics</div></div>
+      <div class="course reveal"><div class="code">EECE 5554</div><div class="name">Robotic Sensing &amp; Navigation</div></div>
+      <div class="course reveal"><div class="code">ME 5250</div><div class="name">Robot Mechanics &amp; Control</div></div>
+      <div class="course reveal"><div class="code">ME 5659</div><div class="name">Control Systems Engineering</div></div>
+      <div class="course reveal"><div class="code">ME 5374</div><div class="name">Human Modeling &amp; Simulation</div></div>
     </div>
   </div>
 </section>
@@ -911,17 +1159,17 @@
 <section id="contact">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="num">/ 05</span>
+      <span class="num">/ 06</span>
       <h2>Get in <em>touch.</em></h2>
     </div>
 
     <div class="contact-grid">
       <div class="reveal">
-        <h3>Have a problem<br/>worth <em>seeing?</em></h3>
+        <h3>Have a robot<br/>worth <em>building?</em></h3>
         <p>
-          I'm open to research collaborations, summer internships, and full-time roles
-          starting Spring 2027 in computer vision, perception, autonomy, and applied ML.
-          The fastest way to reach me is email.
+          I'm graduating May 2026 and open to full-time roles in robotics, computer
+          vision, perception, autonomy, and applied ML — plus collaborations and
+          contract work. The fastest way to reach me is email.
         </p>
         <a href="mailto:polagoni.m@northeastern.edu" class="btn primary">
           polagoni.m@northeastern.edu <span class="arrow">↗</span>
@@ -929,17 +1177,28 @@
       </div>
 
       <div class="socials reveal">
-        <a href="#"><span class="label">GitHub</span><span class="handle">@mayank — ↗</span></a>
-        <a href="#"><span class="label">LinkedIn</span><span class="handle">/in/mayank — ↗</span></a>
-        <a href="#"><span class="label">Google Scholar</span><span class="handle">profile — ↗</span></a>
-        <a href="resume.pdf" download><span class="label">Résumé</span><span class="handle">PDF — ↓</span></a>
+        <a href="https://github.com/polagoni-m" target="_blank" rel="noopener">
+          <span class="label">GitHub</span><span class="handle">@polagoni-m — ↗</span>
+        </a>
+        <a href="https://linkedin.com/in/mayank-goud" target="_blank" rel="noopener">
+          <span class="label">LinkedIn</span><span class="handle">in/mayank-goud — ↗</span>
+        </a>
+        <a href="mailto:polagoni.m@northeastern.edu">
+          <span class="label">Email</span><span class="handle">polagoni.m@northeastern.edu — ↗</span>
+        </a>
+        <a href="tel:+18573519214">
+          <span class="label">Phone</span><span class="handle">+1 (857) 351-9214 — ↗</span>
+        </a>
+        <a href="resume.pdf" target="_blank">
+          <span class="label">Résumé</span><span class="handle">PDF — ↓</span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+  <div class="inner">
     <div>© 2026 Mayank Goud Polagoni</div>
     <div class="built">Built with care · <span>Boston, MA</span></div>
   </div>
@@ -950,7 +1209,6 @@
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
-        // small stagger for siblings
         const delay = Math.min(i * 60, 240);
         setTimeout(() => e.target.classList.add('in'), delay);
         io.unobserve(e.target);
@@ -960,15 +1218,13 @@
 
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Smooth nav highlight (optional)
+  // Active nav highlight
   const navLinks = document.querySelectorAll('nav ul a');
   const sections = [...document.querySelectorAll('section[id]')];
   window.addEventListener('scroll', () => {
     const y = window.scrollY + 120;
     let active = '';
-    sections.forEach(s => {
-      if (s.offsetTop <= y) active = s.id;
-    });
+    sections.forEach(s => { if (s.offsetTop <= y) active = s.id; });
     navLinks.forEach(a => {
       a.style.color = a.getAttribute('href') === '#' + active ? 'var(--text)' : '';
     });
